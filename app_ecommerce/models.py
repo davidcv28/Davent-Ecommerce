@@ -3,11 +3,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db.models import Aggregate, Sum, F
+from cloudinary.models import CloudinaryField
 
 #### PERFIL MODEL #####
 class Perfil(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,  on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='perfil/', default = "perfil/usuario.png")
+    image = CloudinaryField('image', folder='perfil', default = "perfil/usuario.png")
     balance = models.DecimalField( max_digits=12, decimal_places=2, default=300000)
 
 ########################
@@ -32,7 +33,7 @@ class Products(models.Model):
     price_product = models.DecimalField( max_digits=14, decimal_places=2, default = 0.00)
     category_product = models.ForeignKey('Category', on_delete=models.SET_NULL, null = True)
     brand_product = models.ForeignKey('Brand', on_delete=models.SET_NULL, null = True)
-    img_product = models.ImageField( upload_to='productos/', blank=True, null=True)
+    img_product = CloudinaryField('image', folder='productos', blank=True, null=True)
     valoration_product = models.IntegerField(default=0, null=True)
     
     def __str__(self):

@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 """
 Django settings for sistema_ecommerce project.
 
@@ -62,11 +65,18 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage" if DEBUG else "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+#CLOUDINARY
+cloudinary.config(
+  cloud_name = "dptrf6i2v",
+  api_key = "876942492563186",
+  api_secret = "Qmo3lHT7cG02t7MK_LaojEreukY"
+)
 # Application definition
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
+    'cloudinary',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
