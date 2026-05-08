@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Bienvenido{% endblock  %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/home.css" %}">
+<div class="home__container">
+
+    <!--PRESENTATION CONTAINER-->
+    <section class="home__container__presentation presentation__container">
+        <section class="presentation__container__section title__container">
+            <h1 class="title__container--text1">Davent  </h1>
+            <h1 class="title__container--text2">Ecommerce </h2>
+            <h5 >Tienda virtual para los caprichos mas dulces.</h5>
+            <div class="title__container__buttons buttons__container">
+                <a href="{% url "products" %}" class="buttons__container--button button">Explorar productos</a>
+                <a href="{% url "products" %}" class="buttons__container--button button contact__button">Contactanos</a>
+            </div>
+        </section>
+        <section class="presentation__container__section description__container">
+            <h2 class="description__container--text1">Un Viaje de Sabor a tu Alcance</h2>
+            <p class="description__container--text2">Bienvenido a Davent E-commerce, tu tienda virtual especializada en la más deliciosa y variada selección de caramelos y dulces. Desde los clásicos sabores de tu infancia hasta las últimas novedades y creaciones gourmet, hemos curado una colección que deleitará todos tus sentidos. Sumérgete en un mundo de dulzura y encuentra el capricho perfecto para cada ocasión, o simplemente para darte un gusto. ¡Tu próxima experiencia dulce te espera aquí!</p>
+        </section>
+    </section>
+
+    <!--INFO CONTAINER-->
+    <section class="home__container__info info__container">
+        <div class="info__container__subcontainer subcontainer">
+            <div class="subcontainer__header"><h3>Sabor y Felicidad en Cada Dulce</h3></div>
+            <div class="subcontainer__body">
+               <i class="fa-solid fa-candy-cane"></i>
+            </div>
+            <div class="subcontainer__footer">En Davent Golosinas, seleccionamos lo mejor: desde clásicos de la infancia hasta innovaciones gourmet. Calidad y sabor se unen para ofrecerte momentos de felicidad en cada bocado.</div>
+        </div>
+         <div class="info__container__subcontainer subcontainer">
+            <div class="subcontainer__header"><h3>Variedad Infinita, Encuentra tu Favorito</h3></div>
+            <div class="subcontainer__body">
+               <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="subcontainer__footer"> Sumérgete en nuestro catálogo diverso, caramelos, gomitas, chocolates y más. Con filtros sencillos, hallar tu capricho perfecto es rápido y fácil.</div>
+        </div>
+         <div class="info__container__subcontainer subcontainer">
+            <div class="subcontainer__header"><h3>Compra Fácil, Disfrute Rápido</h3></div>
+            <div class="subcontainer__body">
+               <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="subcontainer__footer">Diseñamos tu compra para ser tan dulce como nuestros productos. Navega, añade al carrito y pide de forma segura. Tu alegría está a solo un clic.</div>
+        </div>
+    </section>
+
+    <!--PRODUCTS CONTAINER-->
+    <section class="home__container__products products__container">
+        <div class="products__container__header">
+            <h4>Caprichos Irresistibles a tu Alcance</h4>
+        </div>
+        <div class="products__container__body">
+            {% for product in products  %}
+            <div class="products__container__body subcontainer">
+                <img src="{% if product.img_product %}{{product.img_product.url}}{% endif %}" alt="" class="subcontainer__img">
+                <div class="subcontainer__details">
+                    <div class="subcontainer__details--title">{{product.name_product}}</div>
+                    <h5 class="subcontainer__details--price">${{product.price_product}}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="products__container__footer">
+            <a href="#" class="products__container__footer--button button">Ver Mas</a>
+        </div>
+    </section>
+</div>
+{% endblock  %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Panel Administrador{% endblock  %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/admin/admin.css" %}">
+<div class="admin__container">
+    <!--SLIDER CONTAINER-->
+    <div class="admin__container__slider slider__container">
+        <div class="slider__container__header">
+            <h1>Davent <i class="fa-solid fa-candy-cane"></i></h1>
+        </div>
+        <ul class="slider__container__body slider__menu">
+            <li class="slider__menu__item">
+                <a href="?section_page=user__view" class="{% if section__page == 'user__view' %}slider__menu__item--link-select{% endif %} slider__menu__item--link" id="users__link__button" >Usuarios</a>
+            </li>
+            <li class="slider__menu__item">
+                <a href="?section_page=products_view" class="{% if section__page == 'products_view' %}slider__menu__item--link-select{% endif %} slider__menu__item--link">Productos</a>
+            </li>
+            <li class="slider__menu__item">
+                <a href="?section_page=sales_view" class="{% if section__page == 'sales_view' %}slider__menu__item--link-select{% endif %} slider__menu__item--link">Ventas</a>
+            </li>
+            <li class="slider__menu__item">
+                <a href="{% url "home" %}" class="slider__menu__item--link">Volver a la pagina</a>
+            </li>
+        </ul>
+        
+    </div>
+    <!--VIEWS CONTAINER-->
+    <div class="view__container">
+      {% if section__page == 'user__view' %} {% include "admin/add_user.html"%} {% endif %}
+      {% if section__page == 'products_view' %} {% include "admin/admin__products.html"%} {% endif %}  
+    </div>
+</div>
+
+<h2 class="error__admin__view">VISTA SOLO DISPONIBLE PARA PC DE ESCRITORIO</h2>
+<script type="module" src="{% static "js/admin/admin.js" %}"></script>
+{% endblock  %}

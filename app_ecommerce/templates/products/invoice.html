@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Factura{% endblock  %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/products/invoice.css" %}">
+<div class="invoice__container">
+    <div class="invoice__container__header">
+        <h2 class="invoice__container__header--logo">
+            Factura
+        </h2>
+        <h4 class="invoice__container__header--invoice">
+             {{invoice.n_invoice}}
+             <label for="">
+                fecha de emision: {{invoice.order_date}}
+             </label>
+        </h4>
+
+    </div>
+    <div class="invoice__container__body">
+        <div class="invoice__container__body__info info__container">
+            <div class="trader__container sub__container">
+                <b class="trader__container--title">Vendedor</b>
+                <label for="" class="trader__container--label label__logo">Davent</label>
+                <label for="" class="trader__container--label ">Dirección: Calle falsa 275</label>
+                <label for="" class="trader__container--label">Email: davent@gmail.com</label>
+            </div>
+            <div class="buyer__container sub__container">
+                <b class="trader__container--title">Comprador</b>
+                <label for="" class="trader__container--label label__name ">{{invoice.order_user.first_name}} {{invoice.order_user.last_name}}</label>
+                <label for="" class="trader__container--label">Email: {{invoice.order_user.email}}</label>
+            </div>
+        </div>
+        <div class="invoice__container__body__details details__container">
+            <table class="details__container__pc">
+                <thead>
+                    <th class="product__th">
+                        Producto
+                    </th >
+                    <th class="quantity__th">
+                        Cantidad
+                    </th  >
+                    <th class="price__th">
+                        Precio U.
+                    </th>
+                    <th class="total__th">
+                        Total
+                    </th>
+                </thead>
+                <tbody>
+                    {% for detail in details  %}
+                    <tr>
+                        <td clas="td__product">
+                            {{detail.detail_product.name_product}}
+                        </td>
+                        <td>
+                            {{detail.detail_quantity}}
+                        </td>
+                        <td>
+                            ${{detail.detail_price}}
+                        </td>
+                        <td>
+                            ${{detail.detail_total}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="details__container__movil">
+                {% for detail in details %}
+                <div class="product__container">
+                    <div class="product__container__header">
+                        <label>{{detail.detail_product.name_product}} </label>
+                    </div>
+                    <div class="product__container__body">
+                        <label for="">Cantidad: {{detail.detail_quantity}}</label>
+                        <label for="">Precio U.: ${{detail.detail_price}}</label>
+                        <label for="">Total: ${{detail.detail_total}}</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="invoice__container__footer">
+        <label for="">Iva 21%: ${{invoice.iva}}</label>
+        <label for="">Total de compra: ${{invoice.order_total}}</label>
+        <h3>TOTAL: ${{invoice.order_total_price}}</h3>
+    </div>
+
+</div>
+{% endblock  %}

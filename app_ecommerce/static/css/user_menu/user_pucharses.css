@@ -1,0 +1,145 @@
+.user__main__container{
+    background: var(--color-jordy-blue-100);
+}
+.user__pucharse__container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5rem;
+    height: 100%;
+    width: 100%;
+    @media(max-width:1300px){
+        gap: 1rem;
+    }
+    .user__pucharse__container__header{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: var(--color-text-3);
+        width: 100%;
+        padding: 0.5rem;
+        border-bottom: 1px solid var(--color-text-3);
+    }
+    .user__pucharse__container__body{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        @media(max-width:990px){
+            flex-direction: column;
+        }
+        /*///////////////////////////////////////
+        ////PUCHARSE CONTAINER PC VERSION////////
+        ///////////////////////////////////////*/
+        .pucharse__table{
+            
+            width: 100%;
+            @media(max-width:990px){
+                display: none;
+            }
+            thead{
+                background: var(--color-jordy-blue-700);
+                border-radius: 1rem;
+                th{
+                    padding: 0.2rem;
+                    color: var(--white-default);
+                    text-align: left;
+                }
+            }
+            tbody{
+                background: var(--color-jordy-blue-200);
+                tr{
+                    td{
+                        color: var(--color-jordy-blue-800);
+                        font-weight: 600;
+                        padding: 0.2rem;
+                        h5{
+                            color: var(--color-blue-500);
+                            padding: 0.5rem;
+                            font-weight: bold;
+                            font-size: 1.1rem;
+                        }
+                    }
+                    &:nth-child(even){
+                        td{
+                            color: var(--color-jordy-blue-100);
+                            background: var(--color-blue-500);
+                            h5{
+                                color: var(--color-blue-100);
+                            }
+                            a{
+                                color: var(--color-blue-100);
+                            }
+                        }
+                    }
+                    &:hover{
+                        background: var(--color-blue-400);
+                        td{
+                            color: var(--white-default);
+                            h5{
+                                color: inherit;
+                            }
+                            a{
+                                color: inherit;
+                            }
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
+        /*///////////////////////////////////////
+        ////PUCHARSE CONTAINER MOVIL VERSION////////
+        ///////////////////////////////////////*/
+        .user__pucharse__container__movil{
+            display: none;
+            @media(max-width:990px){
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: 0.5rem;
+                box-shadow: 0 0 5px var(--color-woodsmoke-300);
+                background: var(--white-default);
+                label{
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    font-size: 1rem;
+                    font-weight: 700;
+                    color: var(--color-jordy-blue-800);
+                    padding: 0.3rem;
+                    a{
+                        font-size: 1.1rem;
+                    }
+                }
+                .user__pucharse__container__movil--invoice{
+                    padding-bottom: 0.5rem;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    width: 100%;
+                    background: var(--color-jordy-blue-700);
+                    color: var(--white-default);
+                }
+                .user__pucharse__container__movil--client{
+                    color: var(--color-blue-400);
+                }
+                .user__pucharse__container__movil--total{
+                    padding: 0.5rem;
+                    background: var(--color-thunderbird-100);
+                    border-radius: 1rem;
+                    font-weight: bold;
+                    color: var(--color-thunderbird-600);
+
+                }
+            }
+            
+        }
+
+    }
+}

@@ -1,0 +1,41 @@
+
+      {% csrf_token %}
+    
+    <div class="buycartview__movil__container__body">
+        {% for product in Cart.cart.values %}
+        <div class="buycart__movil">
+            <div class="buycart__movil__title">
+                <h5 class="buycart__movil--title">{{product.product_name}}</h5>
+                <input name="product__delete" value="{{product.product_id}}" type="text" hidden>
+                <button name="type__action" value="delete__action" class="bi bi-x-lg buycart__movil--close"></button>
+            </div>
+            
+            <div class="buycart__movil__details">
+                <img class="buycart__movil--img" src="{{product.product_image}}" alt="">
+                <div class="buycart__movil__details--price-quantity">
+                    <div class="buycart__movil__details--quantity">
+                        <p>Cantidad: {{product.product_quantity}}</p> 
+                        <a hx-get="{% url "increment_decrement__item__viewcart__movil" %}?type__action=decrement&item__select={{product.product_id}}" hx-target="#buycart__view__container__movil" hx-swap="innerHTML" class=" bi bi-dash-circle buycart__movil__details__quantity--decrement"></a>
+                        
+                        <a hx-get="{% url "increment_decrement__item__viewcart__movil" %}?type__action=increment&item__select={{product.product_id}}" hx-target="#buycart__view__container__movil" hx-swap="innerHTML" class="bi bi-plus-circle buycart__movil__details__quantity--increment"></a>
+                    </div>
+                    <p>Precio: ${{product.product_price}}</p>
+                    <h4>Total: ${{product.product_total_price}}</h4>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+    <div class="buycartview__movil__container__footer">
+        <label>Subtotal: ${{total__price}}</label>
+        <label>IVA 21%: ${{iva__price}}</label>
+        <div class="buycartview__movil__container__footer__total total__container">
+            <h4>TOTAL:</h4>
+            <h3 class="buycartview__movil__container__footer--subtotal"> ${{total__price}}</h3>
+        </div>
+        <button type="submit" name="type__action" value="pucharse__action"  class="buycartview__movil__container__footer--button button">Confirmar Compra</button>
+    </div>
+    
+    
+    

@@ -1,0 +1,210 @@
+{% load static %}
+<!--PRODUCTS PANEL VIEWS-->
+<div class="adminviews__container">
+    <div class="adminviews__container__header">
+        <h2 class="adminviews__container__header--title">Administrador de productos</h2>
+        <div class="adminviews__container__header__functions functions__container">
+            <form method="GET"  class="adminviews__container__header__filters filters__container">
+                {% csrf_token %}
+                <div  class="filters__container__search search__container">
+                    <input type="text" value="products_view" name="section_page" hidden>
+                    <input name="search__input__product" type="text" placeholder="Buscar Producto" class="search__container--search textbox">
+                    <i class="bi bi-search search__container--icon"></i>
+                </div>
+                <button class="filters__container--button button">Buscar</button>
+            </form>
+            <div class="functions__container__adduser adduser__container">
+                <button class="adduser__container--button button product__modal__open__button" data-name-product-actions = "product__register" id="product__modal__open__button">Nuevo Producto <i class="fa-solid fa-plus"></i></button>
+
+            </div>
+        </div>
+
+    </div>
+    {% if products__admin %}
+    <div class="adminviews__container__body ">
+        
+        <table class="adminviews__container__body__table table__container">
+            <thead class="table__container__thead">
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Categoria</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acción</th>
+            </thead>
+            <tbody class="table__container__tbody">
+                {% for product in products__admin  %}
+                <tr>
+                    <td>{{product.name_product}}</td>
+                    <td>{{product.brand_product}}</td>
+                    <td>{{product.category_product}}</td>
+                    <td>${{product.price_product}}</td>
+                    <td>{{product.stock_product}}</td>
+                    <td><i title="Editar producto"  data-name-action="product__update" data-id-product="{{product.id}}" data-name-product = "{{product.name_product}}" data-brand-product="{{product.brand_product.id}}"  data-category-product="{{product.category_product.id}}" data-price-product="{{product.price_product}}" data-stock-product ="{{product.stock_product}}" data-image-product ="{{product.img_product}}" href="?updateproduct=" class="bi bi-pencil-square td--icon edit--icon product__modal__open__button"></i> <i title="Eliminar producto" id="{{product.id}}" data-image-product="{{product.img_product}}" name="delete"  class="bi bi-trash-fill td--icon  delete--icon delete__item__button"></i> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+    {% endif %}
+    
+</div>
+<!--/////////////////////-->
+<!--MODAL ADD/UPDATE PRODUCTS-->
+<!--/////////////////////-->
+<dialog class="modal__container" id="product__modal" {% if error__msj %} open {% else %}hidden {% endif %}>
+    <form method="POST"   enctype="multipart/form-data" class="modal__form__container" id="product__modal__form" >
+        {% csrf_token %}
+        <div class="modal__form__container__header">
+            <h2 class="modal__form__container__header--title" id="product__modal--title">{{product__title__msj}}</h2>
+            <i class="bi bi-x-lg modal__form__container__header--icon" id="product__modal__close__button"></i>
+        </div>
+        <div class="modal__form__container__body">
+            <input type="text" id="input__form__type" name="form__type" value="" hidden>
+            <input type="text" name="section_page" value='products_view' hidden>
+            <input type="text" name="id__product__input" id="product__id" hidden>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-id-card-clip input__container--icon"></i> 
+                {# REGISTER PRODUCT NAME #}
+                <label for="" class="input__container--label">Nombre del producto</label>
+                {{product__form.name_product}}
+                
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-id-card-clip input__container--icon"></i> 
+                {# REGISTER PRODUCT BRAND #}
+                <label for="" class="input__container--label">Marca</label>
+                {{product__form.brand_product}}
+                {#### ADD BRAND MODAL ####}
+                <i class="fa-solid fa-plus input__container--addicon" id="open__brand__modal__button"></i>
+                {#### END  BRAND MODAL ####}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-user input__container--icon"></i>
+                {# REGISTER PRODUCT CATEGORY#}
+                <label for="" class="input__container--label">Categoria</label>
+                {{product__form.category_product}}
+                {#### ADD CATEGORY MODAL ####}
+                <i class="fa-solid fa-plus input__container--addicon" id="open__category__modal__button"></i>
+                {#### END  CATEGORY MODAL ####}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-dollar-sign input__container--icon"></i>  
+                {# REGISTER PRODUCT PRICE #}
+                <label for="" class="input__container--label">Precio de venta</label>
+                {{product__form.price_product}}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-boxes-stacked input__container--icon"></i>
+                {# REGISTER PRODUCT STOCK  #}
+                <label for="" class="input__container--label">Stock</label>
+                {{product__form.stock_product}}
+                {% if product__form.stock_product.errors %}<h5 class="input__container--input-error">{{products__add__form.stock_product.errors}}</h5>{% endif %}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-image input__container--icon"></i> 
+                {# REGISTER PRODUCTO IMAGE #}
+                <label for="" class="input__container--label">Imagen</label>
+                {{product__form.img_product}}
+            </div>
+
+            {% if product__form.non_field_errors %}
+                <div class="input__container--error" >
+                    {% for error in product__form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="modal__form__container__footer">
+            <button class="modal__form__container__footer--button button" id="product__modal--button" type="submit">{{product__button__msj}}</button>
+        </div>
+    </form>
+</dialog>
+
+<!--/////////////////////-->
+<!--MODAL DELETE PRODUCTS-->
+<!--/////////////////////-->
+<dialog class="modal__container" style="max-width:35rem; width:100%;" id="delete__modal__product" hidden >
+    <form method ="POST" action="" class="delete__container">
+        {% csrf_token %}
+        <div class="delete__container__header">
+            <h2 class="delete__container__header--title">Esta seguro que desea eliminar este producto</h2>
+        </div>
+        <div class="delete__container__body">
+            <input type="text" name="section_page" value="products_view" hidden>
+            <input type="text" name="form__type" value="delete__product" id="input__delete__modal" hidden>
+            <input type="text" name="product__id__input" id="input__delete__modal__id__product" hidden >
+            <label for="" class="delete__container__body--label">Nombre de producto:</label>
+            <label for="" class="product__name__label"></label>
+            
+        </div>
+        <div class="delete__container__footer">
+            <button type="submit" class="delete__container__body--button button delete__button">Eliminar</button>
+            <div id="delete__modal__cancel__button" class="delete__container__body--button button" style="cursor:pointer">Cancelar</div>
+        </div>
+    </form>
+</dialog>
+</dialog>
+<!--/////////////////////-->
+<!--MODAL ADD BRAND-->
+<!--/////////////////////-->
+<dialog class="modal__container" id="brand__modal" style="top:15rem;" {% if  brand__msj__error %}{% else %}hidden{% endif %}>
+    <form method="POST" class="modal__form__container" >
+        {% csrf_token %}
+        <input type="text" name="section_page" value="products_view" hidden>
+        <input type="text" name="form__type" value="add__brand" hidden>
+        <input type="text" name="brand__success" value="True" hidden>
+        <div class="modal__form__container__header">
+            <h3 class="modal__form__container__header--title">Agregar nueva marca</h3>
+            <i class="bi bi-x-lg modal__form__container__header--icon" id="close__brand__modal__button"></i>
+        </div>
+        <div class="modal__form__container__body">
+            <div class="input__container">
+                <i class="fa-solid fa-tag input__container--icon" style="top:0.8rem"></i>
+                {{brandformregister.name_brand}}
+            </div>
+            {% if brandformregister.name_brand.errors %}
+            <div class="input__container" >
+                <h5 class="input__container--input-error" style="border:none">{{brandformregister.name_brand.errors}}</h5>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="modal__form__container__footer">
+            <button type="submit" class="modal__form__container__footer--button button">Agregar Marca</button>
+        </div>
+    </form>
+</dialog>
+<!--/////////////////////-->
+<!--MODAL ADD CATEGORY-->
+<!--/////////////////////-->
+<dialog class="modal__container" id="category__modal" style="top:15rem;" {% if  category__msj__error %}{% else %}hidden{% endif %}>
+    <form method="POST" class="modal__form__container" >
+        {% csrf_token %}
+        <input type="text" name="section_page" value="products_view" hidden>
+        <input type="text" name="form__type" value="add__category" hidden>
+        <input type="text" name="category__success" value="True" hidden>
+        <div class="modal__form__container__header">
+            <h3 class="modal__form__container__header--title">Agregar nueva Categoria</h3>
+            <i class="bi bi-x-lg modal__form__container__header--icon" id="close__category__modal__button"></i>
+        </div>
+        <div class="modal__form__container__body">
+            <div class="input__container">
+                <i class="fa-solid fa-tag input__container--icon" style="top:0.8rem"></i>
+                {{categoryformregister.name_category}}
+            </div>
+            {% if categoryformregister.name_category.errors %}
+            <div class="input__container" >
+                <h5 class="input__container--input-error" style="border:none">{{categoryformregister.name_category.errors}}</h5>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="modal__form__container__footer">
+            <button type="submit" class="modal__form__container__footer--button button">Agregar Marca</button>
+        </div>
+    </form>
+</dialog>
+<script type="module" src="{% static "js/admin/admin__product.js" %}"></script>

@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entorno Virtual
+venv/
+env/
+ENV/
+
+# Variables de Entorno (¡CRÍTICO!)
+.env
+
+# Base de datos local (si usas SQLite para pruebas)
+*.sqlite3
+db.sqlite3-journal
+
+# Archivos de medios y estáticos generados
+media/
+staticfiles/
+
+# IDEs (VSCode, PyCharm)
+.vscode/
+.idea/

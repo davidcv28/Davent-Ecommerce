@@ -1,0 +1,171 @@
+{% load static %}
+<!--USER PANEL VIEWS-->
+<div class="adminviews__container">
+    <div class="adminviews__container__header">
+        <h2 class="adminviews__container__header--title">Administrador de usuarios</h2>
+        <div class="adminviews__container__header__functions functions__container">
+            <form method="GET"  class="adminviews__container__header__filters filters__container">
+                {% csrf_token %}
+                <div  class="filters__container__search search__container">
+                    <input name="search__input__user" type="text" placeholder="Buscar Usuario" class="search__container--search textbox">
+                    <i class="bi bi-search search__container--icon"></i>
+                </div>
+                <button class="filters__container--button button">Buscar</button>
+            </form>
+            <div class="functions__container__adduser adduser__container">
+                <button class="adduser__container--button button" id="user__button__open__modal">Nuevo usuario <i class="bi bi-person-fill-add"></i></button>
+
+            </div>
+        </div>
+
+    </div>
+    {% if users__admin %}
+    <div class="adminviews__container__body ">
+        
+        <table class="adminviews__container__body__table table__container">
+            <thead class="table__container__thead">
+                <th>Nombre de Usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Es Staff</th>
+                <th>Accion</th>
+            </thead>
+            <tbody class="table__container__tbody">
+                {% for user in users__admin  %}
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.is_staff|yesno:"Si,No"}}</td>
+                    {% if not user.is_superuser %}<td><i title="Editar usuario"  data-id-user="{{user.id}}" data-name-user = "{{user.first_name}}" data-lastname-user="{{user.last_name}}"  data-username-user="{{user.username}}" data-email-user="{{user.email}}" href="?updateuser=" class="bi bi-pencil-square td--icon edit--icon update__modal__user__button"></i> <i title="Eliminar usuario" id="{{user.username}}" name="delete"  class="bi bi-trash-fill td--icon  delete--icon delete__item__button"></i> </td>{% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+    {% endif %}
+    
+</div>
+<!--MODAL ADD USER-->
+<dialog class="modal__container" id="user__modal" {% if error__msj %} open {% else %}hidden {% endif %}>
+    <form method="POST"  class="modal__form__container">
+        {% csrf_token %}
+        <div class="modal__form__container__header">
+            <h2 class="modal__form__container__header--title">Registro de usuario</h2>
+            <i class="bi bi-x-lg modal__form__container__header--icon"  id="user__button__close__modal"></i>
+        </div>
+        <div class="modal__form__container__body">
+            <input type="text" name="form__type" value="add__user" hidden>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-id-card-clip input__container--icon" ></i>
+                 <label for="" class="input__container--label">Nombre</label> 
+                {# REGISTER FIRST_NAME #} 
+                {{formreguser.first_name}}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-id-card-clip input__container--icon" ></i> 
+                <label for="" class="input__container--label">Apellido</label>
+                {# REGISTER LAST_NAME #}  
+                {{formreguser.last_name}}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-user input__container--icon" ></i>
+                <label for="" class="input__container--label">Nombre de usuario</label>
+                {# REGISTER FIRST_USERNAME #} 
+                {{formreguser.username}}
+                {% if formreguser.username.errors  %}<h5 class="input__container--error">{{formreguser.username.errors}}</h5>{% endif %}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-at input__container--icon" ></i>
+                <label for="" class="input__container--label">Correo electronico</label>
+                {# REGISTER EMAIL #} 
+                {{formreguser.email}}
+                {% if formreguser.email.errors %}<h5 class="input__container--error">{{formreguser.email.errors}}</h5>{% endif %}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-lock input__container--icon" ></i>
+                <label for="" class="input__container--label">Contraseña</label>
+                {# REGISTER PASSWORD  #}  
+                {{formreguser.password1}}
+          {% if formreguser.password1.errors %}<h5 class="input__container--error">{{formreguser.password1.errors}}</h5>{% endif %}
+            </div>
+            <div class="modal__form__container__body__input__container input__container">
+                <i class="fa-solid fa-lock input__container--icon" ></i>
+                 <label for="" class="input__container--label">Repetir contraseña</label>    
+                {# REGISTER PASSWORD REPEAT #} 
+                {{formreguser.password2}}
+                {% if formreguser.password2.errors %}<h5 class="input__container--error">{{formreguser.password2.errors}}</h5>{% endif %}
+            </div>
+        </div>
+        <div class="modal__form__container__footer">
+            <button class="modal__form__container__footer--button button" type="submit">Registrar usuario</button>
+        </div>
+    </form>
+</dialog>
+
+<!--MODAL DELETE USER-->
+<dialog class="modal__container" id="delete__modal__user" hidden >
+    <form method ="POST" action="" class="delete__container">
+        {% csrf_token %}
+        <div class="delete__container__header">
+            <h2 class="delete__container__header--title">Esta seguro que desea eliminar este usuario</h2>
+        </div>
+        <div class="delete__container__body">
+            <input type="text" name="form__type" value="delete__user" id="input__delete__modal" hidden>
+            <input type="text" name="username__input" id="input__delete__modal__username" hidden>
+            <label for="" class="delete__container__body--label">Nombre de usuario:</label>
+            <label for="" class="delete__container__body--label username__label">Guillermito el prohibido</label>
+            
+        </div>
+        <div class="delete__container__footer">
+            <button type="submit" class="delete__container__body--button button delete__button">Eliminar</button>
+            <div id="delete__modal__cancel__button" class="delete__container__body--button button" style="cursor:pointer">Cancelar</div>
+        </div>
+    </form>
+</dialog>
+
+<!--MODAL UPDATE USER-->
+<dialog class="modal__container" id="user__update__modal" {% if not update__error__msj  %}hidden{% endif %}>
+    <form method="POST" action="." class="modal__form__container">
+        {% csrf_token %}
+        <input type="text" name="form__type" value="update__user" hidden>
+        <input type="text" id="input__modal__user__id" name="id__update__user" value="{% if update__user__id  %}{{update__user__id}}{% endif %}" hidden>
+        <div class="modal__form__container__header">
+            <h3 class="modal__form__container__header--title">Editor de usuario</h3>
+            <i class="bi bi-x-lg modal__form__container__header--icon " id="close__update__user__modal__button" ></i>
+        </div>
+        <div class="modal__form__container__body">
+            <div class="input__container">
+                <i class="bi bi-person-vcard-fill input__container--icon"></i>
+                <label for="" class="input__container--label">Nombre</label> 
+                {{form__user__update.first_name}}
+                {{form__user__update.first_name.errors}}
+            </div>
+             <div class="input__container">
+                <i class="bi bi-person-vcard-fill input__container--icon"></i>
+                <label for="" class="input__container--label">Apellido</label> 
+                {{form__user__update.last_name}}
+                {{form__user__update.first_name.errors}}
+            </div>
+             <div class="input__container">
+                <i class="bi bi-person-fill input__container--icon"></i>
+                <label for="" class="input__container--label">Nombre de usuario</label> 
+                {{form__user__update.username}}
+                <h5 style="font-size:1rem; font-weight:500; color:red">{{form__user__update.username.errors}}</h5>
+            </div>
+             <div class="input__container">
+                <i class="fa-solid fa-at input__container--icon" ></i>
+                <label for="" class="input__container--label">Correo electronico</label> 
+                {{form__user__update.email}}
+                {{form__user__update.first_name.errors}}
+            </div>
+        </div>
+        <div class="modal__form__container__footer">
+            <button type="submit" class="modal__form__container__footer--button button">Guardar Cambios</button>
+        </div>
+    </form>
+</dialog>
+<script type="module" src="{% static "js/admin/admin__user.js" %}"></script>

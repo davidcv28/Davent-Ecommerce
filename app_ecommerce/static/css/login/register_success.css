@@ -1,0 +1,34 @@
+@import url('controls.css');
+
+header{
+    .nav{
+        .login__container{
+            display: none;
+        }
+    }
+}
+
+
+/*//////////////////////////////////
+/////SUCCESS REGISTER CONTAINER ////
+//////////////////////////////////*/
+
+.success__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 27rem;
+    width: 100%;
+    padding: 1rem;
+    gap: 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--green-500);
+    background: var(--green-200);
+    color: var(--green-700);
+    
+    .success__container__footer{
+        display: flex;
+        gap: 1rem;
+        font-weight: 500;
+    }
+}

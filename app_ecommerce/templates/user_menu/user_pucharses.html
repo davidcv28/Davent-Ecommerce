@@ -1,0 +1,69 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/user_menu/user_pucharses.css" %}">
+<div class="user__pucharse__container">
+    <div class="user__pucharse__container__header">
+        <h3>Compras realizadas <i class="bi bi-bag-fill"></i> </h3>
+    </div>
+    <div class="user__pucharse__container__body">
+
+
+        {##############################}
+        {# USER PUCHARSE CONTAINER PC #}
+        {##############################}
+        <table class="user__pucharse__container__body__pucharses pucharse__table">
+            <thead>
+                <th class="pucharse__table__th__id">
+                    
+                </th>
+                <th class="pucharse__table__th__client">
+                    comprador
+                </th>
+                <th class="pucharse__table__th__date">
+                    fecha
+                </th>
+                <th class="pucharse__table__th__total">
+                    total
+                </th>
+                <th class="pucharse__table__th__invoice">
+                    detalle
+                </th>
+            </thead>
+            <tbody>
+                {% for pucharse  in user_pucharses_items %}
+                <tr>
+                    <td class="pucharse__table__td pucharse__table__td__id">
+                       {{pucharse.n_invoice}}
+                    </td>
+                    <td class="pucharse__table__td pucharse__table__td__name">
+                        {{pucharse.order_user.first_name}} {{pucharse.order_user.last_name}}
+                    </td>
+                    
+                    <td class="pucharse__table__td pucharse__table__td__date">
+                        {{pucharse.order_date|date:"d/m/Y"}}
+                    </td>
+                    <td class="pucharse__table__td pucharse__table__td__total">
+                        <h5>${{pucharse.order_total_price}}</h5>
+                    </td>
+                    <td class="pucharse__table__td pucharse__table__td__link">
+                        <a href="{% url "invoice__view" pucharse.id %}" rel="noopener noreferrer" target="_blank">Ver Factura</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+        {##############################}
+        {#USER PUCHARSE CONTAINER MOVIL#}
+        {##############################}
+        {% for pucharse in user_pucharses_items  %}
+        <div class="user__pucharse__container__movil">  
+            <label for="" class="user__pucharse__container__movil--invoice">Factura: {{pucharse.n_invoice}} </label>
+            <label for="" class="user__pucharse__container__movil--client">Comprador:  {{pucharse.order_user.first_name}} {{pucharse.order_user.last_name}} </label> 
+            <label for="" class="user__pucharse__container__movil--date">Fecha: {{pucharse.order_date|date:"d/m/Y"}} </label>
+            <label for="" class="user__pucharse__container__movil--total">Total: ${{pucharse.order_total_price}} </label>
+            <label for="" class="user__pucharse__container__movil--link">Detalles: <a href="{% url "invoice__view" pucharse.id %}" target="__blank" rel="noopener noreferrer">Ver mas</a></label>
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>

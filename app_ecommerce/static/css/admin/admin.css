@@ -1,0 +1,231 @@
+header{
+   display: none;
+}
+main{
+    margin: 0;
+    padding: 0;
+}
+.error__admin__view{
+    display: none;
+    @media (max-width:990px){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        min-height: 100vh;
+    }
+}
+.admin__container{
+    display: flex;
+    justify-content: flex-start;
+ 
+    width: 100%;
+    
+    @media(max-width:990px){
+        display: none;
+    }
+    /*////////////////////////////////////////
+    /////////////SLIDER CONTAINER ////////////
+    ////////////////////////////////////////*/
+    .slider__container{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;    
+        height: auto;
+        background: var(--color-jordy-blue-600);
+        max-width: 20rem;
+        width: 100%;
+        
+        .slider__container__header{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            padding: 0.5rem;
+            font-family: "DynaPuff", system-ui;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            font-variation-settings:"wdth" 100;
+            font-size:clamp(1.5rem, 10vw, 3rem);
+            color: var(--color-jordy-blue-100);
+            padding-bottom: 1rem;
+            
+        }
+        .slider__menu{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            list-style: none;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            
+            
+            .slider__menu__item{
+                
+                width: 100%;
+                border-bottom: 1px solid var(--color-jordy-blue-100);
+                &:nth-child(1){
+                    border-top: 1px solid var(--color-jordy-blue-100);
+                }
+                
+            }
+            .slider__menu__item--link{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                padding: 1.5rem 1rem;
+                color: var(--white-default);
+                text-decoration: none;
+                font-weight: 500;
+                &:hover{
+                    background: var(--color-jordy-blue-100);
+                    color: var(--color-jordy-blue-600);
+                }
+            }
+            .slider__menu__item--link-select{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                padding: 1.5rem 1rem;
+                background: var(--color-jordy-blue-50);
+                color: var(--color-jordy-blue-600);
+                text-decoration: none;
+                font-weight: 500;
+                
+            }
+        }
+    }
+    /*////////////////////////////////////////
+    /////////////VIEWS CONTAINER ////////////
+    ////////////////////////////////////////*/
+    .view__container{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        
+        width: 100%;
+       
+        
+    }
+}
+
+/*/////////////////////////////////////////////
+/////////////USERS PANEL CONTAINER ////////////
+////////////////////////////////////////////*/
+.adminviews__container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 3rem;
+    .adminviews__container__header{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 3rem;
+        .adminviews__container__header--title{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--color-jordy-blue-600);
+            padding: 1.3rem;
+            width: 100%;
+            color: var(--color-jordy-blue-100);
+        }
+        .functions__container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1rem;
+            .adduser__container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-width: 12rem;
+                width: 100%;
+                .adduser__container--button{
+                    gap: 0.5rem;
+                    padding: 0.2rem;
+                }
+            }
+            .adminviews__container__header__filters{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 0.5rem;
+                width: 100%;
+                .filters__container--button{
+                    width: 5rem;
+                    padding: 0.2rem;
+                }
+                .search__container{
+                    display: flex;
+                    position: relative;
+                    .search__container--search{
+                        width: 16rem;
+                        padding: 0.2rem;
+                    }
+                    .search__container--icon{
+                        position: absolute;
+                        right: 0.2rem;
+                        top: 0.2rem;
+                        color: gray;
+                    }
+                }
+
+            }
+        }
+       
+    }
+    .adminviews__container__body{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+            .table__container__thead{
+                background: var(--color-jordy-blue-800);
+                th{
+                    padding: 0.5rem;
+                    color: var(--color-jordy-blue-100);
+                }
+            }
+            .table__container__tbody{
+                background: var(--color-jordy-blue-100);
+                color: var(--color-jordy-blue-600);
+                font-weight: 500;
+                tr{ 
+                    &:nth-child(even){
+                      background: var(--color-jordy-blue-600);
+                      color: var(--color-jordy-blue-50);  
+                      
+                    }
+                    td{
+                        padding: 0.3rem 0.5rem; 
+
+                        .td--icon{
+                            font-size: 1.3rem;
+                            cursor: pointer;
+                        }
+                        .edit--icon{
+                            &:hover{
+                                color: var(--color-goldenrod-300);
+                            }
+                        }
+                        .delete--icon{
+                            margin-left: 0.5rem; 
+                            &:hover{
+                                color: var(--color-thunderbird-500);
+                            }  
+                        }
+                    }
+                }
+            }
+        
+    }
+}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Usuario registrado{% endblock  %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/login/register_success.css" %}">
+<div class="success__container">
+    <section class="success__container__header"><h4>Cuenta registrada</h4></section>
+    <section class="success__container__body">
+        Su cuenta fue registrada con exito
+    </section>
+    <section class="success__container__footer" id="counter__container">
+        <p>Redireccionando en : <p id="time">5</p></p>
+    </section>
+</div>
+<a href="{% url "login" %}" class="link__login" id="login__link"></a>
+<script src="{% static "js/login/register_success.js" %}"></script>
+{% endblock  %}

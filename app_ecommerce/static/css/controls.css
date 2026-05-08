@@ -1,0 +1,522 @@
+/*AQUI DEFINIEROS LOS COLORES PARA CADA ETIQUETA */
+
+:root {
+  /*WHITE DEFAULT */
+  --white-default:white;
+
+  /* davent blue 50 */
+   --davent-blue-50: #E6F0F8;
+
+  /* davent blue 100 */
+   --davent-blue-100: #D4E4F1;
+
+   /* davent blue 500 */ 
+   --davent-blue-500: #3B82F6;
+
+   /* davent blue 600*/ 
+   --davent-blue-600: #2563EB;
+    
+   /* davent blue 800 */
+   --davent-blue-800: #1E40AF;
+
+  /* Jordy Blue 50 */
+  --color-jordy-blue-50: #f3f6fb;
+
+  /* Jordy Blue 100 */
+  --color-jordy-blue-100: #e3ebf6;
+
+  /* Jordy Blue 200 */
+  --color-jordy-blue-200: #ceddef;
+
+  /* Jordy Blue 300 */
+  --color-jordy-blue-300: #98b9dd;
+
+  /* Jordy Blue 400 */
+  --color-jordy-blue-400: #85aad5;
+
+  /* Jordy Blue 500 (Color base) */
+  --color-jordy-blue-500: #688ec9;
+
+  /* Jordy Blue 600 */
+  --color-jordy-blue-600: #5476bc;
+
+  /* Jordy Blue 700 */
+  --color-jordy-blue-700: #4a64ab;
+
+  /* Jordy Blue 800 */
+  --color-jordy-blue-800: #41528c;
+
+  /* Jordy Blue 900 */
+  --color-jordy-blue-900: #384670;
+
+  /* Jordy Blue 950 */
+  --color-jordy-blue-950: #262d45;
+
+  
+ /* color blue 50 */
+    --color-blue-50: #e8f5ff;
+
+    /* color blue 100 */
+    --color-blue-100: #d5ebff;
+
+    /* color blue 200 */
+    --color-blue-200: #b3d8ff;
+
+    /* color blue 300 */
+    --color-blue-300: #85bcff;
+
+    /* color blue 400 */
+    --color-blue-400: #5692ff;
+
+    /* color blue 500 */
+    --color-blue-500: #2f67ff;
+
+    /* color blue 600 */
+    --color-blue-600: #0c36ff;
+
+    /* color blue 700 */
+    --color-blue-700: #002aff;
+
+    /* color blue 800 */
+    --color-blue-800: #062acd;
+
+    /* color blue 900 */
+    --color-blue-900: #102d9f;
+
+    /* color blue 950 */
+    --color-blue-950: #0a195c;
+
+  /*STARSHIP/*
+    /* Starship 50 */
+  --color-starship-50: #fafee8;
+
+  /* Starship 100 */
+  --color-starship-100: #f3fdc4;
+
+  /* Starship 200 */
+  --color-starship-200: #ecfb8d;
+
+  /* Starship 300 */
+  --color-starship-300: #e8f94b;
+
+  /* Starship 400 */
+  --color-starship-400: #e9f51a;
+
+  /* Starship 500 (Color base) */
+  --color-starship-500: #e4e70d;
+
+  /* Starship 600 */
+  --color-starship-600: #c6b908;
+
+  /* Starship 700 */
+  --color-starship-700: #9e870a;
+
+  /* Starship 800 */
+  --color-starship-800: #826a11;
+
+  /* Starship 900 */
+  --color-starship-900: #6f5614;
+
+  /* Starship 950 */
+  --color-starship-950: #412f07;
+
+  /* Woodsmoke 50 */
+--color-woodsmoke-50: #f5f6f6;
+
+/* Woodsmoke 100 */
+--color-woodsmoke-100: #e5e7e8;
+
+/* Woodsmoke 200 */
+--color-woodsmoke-200: #ced1d3;
+
+/* Woodsmoke 300 */
+--color-woodsmoke-300: #acb1b4;
+
+/* Woodsmoke 400 */
+--color-woodsmoke-400: #82898e;
+
+/* Woodsmoke 500 (Color base) */
+--color-woodsmoke-500: #676e73;
+
+/* Woodsmoke 600 */
+--color-woodsmoke-600: #585e62;
+
+/* Woodsmoke 700 */
+--color-woodsmoke-700: #4b4f53;
+
+/* Woodsmoke 800 */
+--color-woodsmoke-800: #424548;
+
+/* Woodsmoke 900 */
+--color-woodsmoke-900: #3a3c3f;
+
+/* Woodsmoke 950 */
+--color-woodsmoke-950: #161718;
+
+/* Goldenrod 50 */
+--color-goldenrod-50: #fffceb;
+
+/* Goldenrod 100 */
+--color-goldenrod-100: #fff7c2;
+
+/* Goldenrod 200 */
+--color-goldenrod-200: #ffec7a;
+
+/* Goldenrod 300 */
+--color-goldenrod-300: #ffe02e;
+
+/* Goldenrod 400 */
+--color-goldenrod-400: #ffd300;
+
+/* Goldenrod 500 (Color base) */
+--color-goldenrod-500: #e6be00;
+
+/* Goldenrod 600 */
+--color-goldenrod-600: #b39500;
+
+/* Goldenrod 700 */
+--color-goldenrod-700: #806c00;
+
+/* Goldenrod 800 */
+--color-goldenrod-800: #4d4300;
+
+/* Goldenrod 900 */
+--color-goldenrod-900: #1a1700;
+
+/* Goldenrod 950 */
+--color-goldenrod-950: #0d0b00;
+/* Thunderbird 50 */
+--color-thunderbird-50: #fff0f0;
+
+/* Thunderbird 100 */
+--color-thunderbird-100: #ffdede;
+
+/* Thunderbird 200 */
+--color-thunderbird-200: #ffc3c3;
+
+/* Thunderbird 300 */
+--color-thunderbird-300: #ff9999;
+
+/* Thunderbird 400 */
+--color-thunderbird-400: #ff5f5f;
+
+/* Thunderbird 500 (Color base) */
+--color-thunderbird-500: #ff2d2d;
+
+/* Thunderbird 600 */
+--color-thunderbird-600: #f40e0e;
+
+/* Thunderbird 700 */
+--color-thunderbird-700: #cf0707;
+
+/* Thunderbird 800 */
+--color-thunderbird-800: #aa0a0a;
+
+/* Thunderbird 900 */
+--color-thunderbird-900: #8c1010;
+
+/* Thunderbird 950 */
+--color-thunderbird-950: #4d0202;
+
+  /* green-50 */
+  --green-50: #e5ffe5;
+
+  /* green-100 */
+  --green-100: #c8ffcb;
+
+  /* green-200 */
+  --green-200: #97ff9e;
+
+  /* green-300 */
+  --green-300: #5bfb69;
+
+  /* green-400 */
+  --green-400: #29f23d;
+
+  /* green-500 */
+  --green-500: #0bef26;
+
+  /* green-600 */
+  --green-600: #03ad1a;
+
+  /* green-700 */
+  --green-700: #08831b;
+
+  /* green-800 */
+  --green-800: #0d671b;
+
+  /* green-900 */
+  --green-900: #10571d;
+
+  /* green-950 */
+  --green-950: #02310c;
+
+  /* green-1000-gradient */
+    --green-1000:linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+   --body-background: linear-gradient(to bottom,
+      var(--color-jordy-blue-100),
+      var(--color-jordy-blue-300),
+      var(--color-jordy-blue-800));
+    --nav-background: linear-gradient(to bottom,
+ var(--color-jordy-blue-200));                                                
+    --nav-menu-pc-text-color:#5476bc;
+    --nav-menu-movil-text-color:#98b9dd;
+  --container-background-1: linear-gradient(to bottom,
+    var(--color-jordy-blue-900),
+    var(--color-jordy-blue-800),
+    var(--color-jordy-blue-900));
+    --container-background-2: linear-gradient(to bottom,
+    var(--color-jordy-blue-600),
+    var(--color-jordy-blue-700),
+    var(--color-jordy-blue-700));
+     --container-background-3: linear-gradient(to bottom,
+    var(--color-jordy-blue-600),
+    var(--color-jordy-blue-700),
+    var(--color-jordy-blue-900));
+    --color-text-1:#384670;
+    --color-text-2:#41528c;
+    --color-text-3:#4a64ab;
+    --color-text-4:#5476bc;
+    --color-text-5:#98b9dd;
+    --color-text-6:#98b9dd;
+    --color-text-7:#ceddef;
+    --color-background-user_menu:#EBF5FA;
+    
+}
+
+/* LES DAMOS UN ESTILO ESTANDAR PARA CADA ETIQUETA */
+.button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  background: var(--color-text-3);
+  border: none;
+  border: 1px solid var(--color-text-7);
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  color: var(--color-text-7);
+  text-decoration: none;
+  border-radius: 0.2rem;
+  text-shadow: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  &:hover{
+    background: var(--white-default);
+    color: var(--color-text-1);
+    border: 1px solid var(--color-text-1);
+  }
+}
+.textbox{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100%;
+  padding: 0.3rem;
+  border: none;
+  border-radius: 0.3rem;
+  outline: none;
+
+}
+.selectbox{
+  width: 90%;
+  position: relative; 
+  padding: 0.3rem;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  outline: none;
+  &:hover{
+    background: var(--white-default);
+  }
+}
+
+.modal__container{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  border: none;
+  box-shadow: 0 0 3px var(--nav-menu-pc-text-color);
+  border-radius: 0.3rem;
+  border: 1px solid var(--white-default);
+  max-width: 27rem;
+  width: 100%;
+  max-height: 41rem;
+  padding: 1rem;
+  position: fixed;
+  margin: 0 auto;
+  top: 7rem;
+  background: var(--container-background-3);
+  
+  
+}
+.modal__form__container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  max-height: 100%;
+  gap: 1rem;
+  max-width: 100%;
+  width: 100%;
+  .modal__form__container__header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding: 0.5rem;
+    border-bottom: 2px solid var(--color-jordy-blue-100);
+    color: var(--color-jordy-blue-50);
+    .modal__form__container__header--icon{
+      font-size: 2rem;
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+      top: 0.5rem;
+      cursor: pointer;
+    }
+  }
+  .modal__form__container__body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: scroll;
+    width: 100%;
+    gap: 0.6rem;
+   
+    scrollbar-width: 0;
+    &::-webkit-scrollbar{
+      width: 0;
+    }
+    .input__container{
+      display: flex;
+      width: 100%;
+      position: relative;
+      flex-direction: column;
+      .input__container--error{
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--color-thunderbird-300);
+        padding: 0;
+             
+      }
+      .input__container--icon{
+        position: absolute;
+        top: 2rem;
+        left: 0.5rem;
+        font-size: 1.3rem;
+        color: var(--color-jordy-blue-50);
+      }
+      .input__container--label{
+        color: var(--white-default);
+        font-weight: 500;
+      }
+      .input__container--input{
+        width: 100%;
+        padding: 0.5rem;
+        outline: none;
+        border: none;
+        background: none;
+        border-bottom: 1px solid var(--color-text-7);
+        padding-left: 2.5rem;
+        font-size: 1.1rem;
+        color: white;
+        caret-color: var(--color-text-7);
+        &::placeholder{
+          color: var(--color-text-7);
+        }
+      }
+      .input__container--addicon{
+        position: absolute;
+        top: 1.5rem;
+        right: 0;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--green-400);
+        &:hover{
+          color: var(--white-default);
+        }
+      }
+      .input__container--input-error{
+        border-top: 1px solid var(--color-thunderbird-500);
+        color: var(--color-thunderbird-400);
+        font-size: 1rem;
+      }
+              
+    }
+    .input__container--error{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 500;
+      width: 100%;
+      padding: 0.3rem;
+      border-radius: 0.3rem;
+      padding-top: 1rem;
+      border: solid var(--color-thunderbird-500);
+      color: var(--color-thunderbird-500);
+      background: var(--color-thunderbird-200);
+    }   
+  }
+  .modal__form__container__footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}
+.delete__container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 3rem;
+  color: var(--white-default);
+  .delete__container__header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+    color: var(--white-default);
+    border-bottom: 1px solid var(--white-default);
+    .delete__container__header--title{
+      text-align: center;
+    }
+  }
+  .delete__container__body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1rem;
+    gap: 1rem;
+    width: 100%;
+    font-weight: 500;
+    font-size: 1.1rem;
+    
+  }
+  .delete__container__footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    .delete__button{
+      background: var(--color-thunderbird-700);
+      &:hover{
+        opacity: 90%;
+        border: 1px solid var(--white-default);
+        background: var(--color-thunderbird-600);
+        color: var(--white-default);
+      }
+    }
+
+  }
+}

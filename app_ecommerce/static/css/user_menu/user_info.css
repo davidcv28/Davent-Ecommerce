@@ -1,0 +1,187 @@
+/*////////////////////////////////////////
+////////////////USER INFO CONTAINER///////////////////////
+///////////////////////////////////////*/
+    .user__info__container{
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        align-items: flex-start;
+        width: 100%;
+        height: 100%;
+        padding: 0.5rem;
+        .user__info__container__header{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            padding: 0.3rem;
+            border-bottom: 1px solid var(--color-jordy-blue-600);
+            .user__info__container__header--title{
+                color: var(--color-jordy-blue-600);
+            }
+        }
+        .user__info__container__body{
+            display: flex;
+            justify-content: space-around;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.5rem;
+            width: 100%;
+            @media(max-width:990px){
+                flex-direction: column;
+            }
+            .sub__container__pucharse{
+                    border-left: 5px solid var(--color-thunderbird-700);
+                    color: var(--color-thunderbird-700);
+                    background: var(--color-thunderbird-50);
+                }
+            .sub__container__balance{
+                    border-left: 5px solid var(--green-700);
+                    color: var(--green-700);
+                    background: var(--green-50);
+                }
+            .sub__container__product-valoration{
+                border-left: 5px solid var(--color-jordy-blue-700);
+                color: var(--color-jordy-blue-700);
+                background: var(--color-jordy-blue-100);
+            }
+            .sub__container{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                position: relative;
+                max-height: 12rem;
+                height: 100%;
+                max-width: 22rem;
+                width: 100%;
+                gap: 1rem;
+                padding: 0.5rem;
+                border-radius: 1rem;
+                
+                @media(max-width:990px){
+                    max-width: 100%;
+                    @media(max-width:720px){
+                        height: 6rem;
+                        
+                        padding: 0.5rem;
+                    }
+                    
+                }
+                
+                .sub__container__header{
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    h5{
+                        display: flex;
+                        width: 100%;
+                        font-size: clamp(1rem, 3vw, 1.7rem);
+                    }
+                }
+                .sub__container__body{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 0.3rem;
+                    align-items: center;
+                    width: 100%;
+                    h2{
+                        font-size: clamp(1.1rem, 3vw, 1.9rem);
+                    }
+                    .sub__container__body--balance{
+                        color: var( --green-600);
+                        font-weight: 700;
+                    }
+                    .sub__container__body--quantity{
+                        color: var(--color-thunderbird-700);
+                    }
+                    .sub__container__body--icon{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position: absolute;
+                        right: 1rem;
+                        border-radius: 2rem;
+                        font-size: 2rem;
+                        width: 3rem;
+                        height: 3rem;
+                        padding: 0.5rem;
+                        margin-bottom: 0.5rem;
+                        @media(max-width:990px){
+                             bottom: 0.5rem;
+                        }
+                        @media(max-width:720px){
+                            width: 2.5rem;
+                            height: 2.5rem;
+                            font-size: 1.5rem;
+                           
+                        }
+                    }
+                    .icon--balance{
+                        background: var(--green-200);
+                        color: var(--green-700);
+                    }
+                    .icon--quantity{
+                        background: var(--color-thunderbird-300);
+                        color: var(--color-thunderbird-700);
+                    }
+                    .icon--valoration{
+                        background: var(--color-jordy-blue-300);
+                        color: var(--color-jordy-blue-700);
+                    }
+                }
+                
+            }
+            
+        }
+        .user__info__container__footer{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 3rem;
+            width: 100%;
+            padding: 1rem;
+            .user__detail__container__header{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 1rem;
+                border-bottom: 1px solid var(--color-jordy-blue-700);
+                width: 100%;
+                color: var(--color-jordy-blue-700);
+                padding: 0.5rem;
+                i{
+                    font-size: 2rem;
+                }
+                
+            }
+            .user__detail__container__body{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                width: 100%;
+                .detail__container{
+                    display: flex;
+                    gap: 1rem;
+                    width: 100%;
+                    .detail__container--title{
+                        font-size: clamp(1.1rem, 3vw, 1.3rem);
+                        color: var(--color-jordy-blue-800);
+                    }
+                    .detail__container--value{
+                        font-size: clamp(0.9rem, 3vw, 1rem);
+                        font-weight: 500;
+                    }
+                    .active__account{
+                        color: var(--green-700);
+                        font-weight: 500;
+                    }
+                    .inactive__account{
+                        color: var(--color-thunderbird-700);
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }

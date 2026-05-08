@@ -1,0 +1,30 @@
+{% csrf_token %}
+<div class="details__updateform__container__header">
+            <h2>Datos Personales <i class="bi bi-person-vcard"></i> </h2>
+        </div>
+        <div class="details__updateform__container__body">
+            <div class="input__container">
+                <label for="" class="input__container--label">Nombre</label>
+                <i class="bi bi-person-fill input__container--icon"></i>
+                {{user__updateform.first_name}}
+                {{user__updateform.first_name.errors}}
+            </div>
+            <div class="input__container">
+                <label for="" class="input__container--label">Apellidos</label>
+                <i class="bi bi-person-fill input__container--icon"></i>
+                {{user__updateform.last_name}}
+                {{user__updateform.last_name.errors}}
+            </div>
+            <div class="input__container">
+                <label for="" class="input__container--label">Correo electronico</label>
+                <i class="bi bi-envelope-at-fill"></i>
+                {{user__updateform.email}}
+                {{user__updateform.email.errors}}
+            </div>
+        </div>
+        <div class="details__updateform__container__footer">
+            {% if not user__updateform.errors %}
+                <label for="">Los datos se guardaron satisfactoriamente</label>
+            {% endif %}
+            <button type="submit" class="details__updateform__container__footer--button button">Guardar Cambios</button>
+        </div>

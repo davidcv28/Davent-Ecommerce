@@ -1,0 +1,170 @@
+header{
+    visibility: hidden;
+}
+/*////////////////////////////////////////
+/////////////////HEADER MAIN MENU///////////////////////
+///////////////////////////////////////*/
+.header__user__main-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    padding: 1rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-jordy-blue-600);
+    .header__user__main-menu--logo{
+        font-family: "DynaPuff", system-ui;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        font-variation-settings:"width" 100;
+        font-size:clamp(1.3rem, 10vw, 2.8rem);
+        color: var(--white-default);
+        text-decoration: none;
+        @media(max-width:990px){
+            margin-top: 1rem;
+        }
+    }
+    .menu-movil--button{
+        display: none;
+        @media(max-width:1300px){
+        display: flex;
+        background: none;
+        border: none;
+        outline: none;
+        color: var(--white-default);
+        padding: 0.5rem;
+        font-size: 2.3rem;
+        margin-top: 0.5rem;
+        }
+        
+    }
+
+
+}
+/*////////////////////////////////////////
+/////////////////SLIDER CONTAINER///////////////////////
+///////////////////////////////////////*/
+.slider__user__main-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    top: 7rem;
+    bottom: 0;
+    max-width:20rem;
+    width:100% ;
+    background: var(--color-jordy-blue-600);
+    border-right: 1px solid var(--color-jordy-blue-600);
+    z-index: 999;
+    @media(max-width:1300px){
+        max-width: 100%;
+        right: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+    .user__main__menu{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        height: 100%;
+        width: 100%;
+        .menu__item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--white-default);
+            border-bottom: 1px solid var(--white-default);
+            cursor: pointer;
+            a{
+                color: var(--white-default);
+                display: flex;
+                justify-content: space-between;
+                text-decoration: none;
+                width: 100%;
+                height: 100%;
+                padding: 1rem;
+            }
+            &:hover{
+                background: var(--white-default);
+                a{
+                    color: var(--color-jordy-blue-700);
+                }
+            }
+
+            .menu__item--title{
+                margin-top: 1rem;
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+            .menu__item--icon{
+                font-size: 1.5rem;
+            }
+        }
+        .menu__item--active{
+            background: var(--color-jordy-blue-700);
+            a{
+                color: var(--white-default);
+            }
+            
+        }
+        .exit__button{
+            background: var(--color-thunderbird-700);
+            color: var(--white-default);
+            &:hover{
+                background: var(--color-thunderbird-700);
+                color: var(--white-default);
+                opacity: 85%;
+            }
+        }
+    }
+}
+.slider__user__main-menu--movil{
+    @media(max-width:1300px){
+        transform: translateX(0rem);
+        transition: all 0.3s;
+    }
+   
+}  
+/*////////////////////////////////////////
+/////////////////MAIN MENU CONTAINER///////////////////////
+///////////////////////////////////////*/
+.user__main__container{
+   position: fixed;
+   left: 22rem;
+   right: 2rem;
+   bottom: 2rem;
+   top: 8rem;
+   display: flex;
+   justify-content: flex-start;
+   align-items: flex-start;
+   padding: 0.5rem;
+   border: 1px solid var(--white-default);
+   border-radius: 0.5rem;
+   background: var(--color-background-user_menu);
+   overflow-y: scroll;
+   &::-webkit-scrollbar-thumb{
+        background:var(--color-text-3); 
+        border-radius: 10px; 
+    }
+    &::-webkit-scrollbar-track{
+        background: var(--color-woodsmoke-50); 
+        border-radius: 10px; 
+    }
+    &::-webkit-scrollbar{
+        width: 5px; 
+        
+    }
+   @media(max-width:1300px){
+    left: 1rem;
+    right: 1rem;
+
+   
+   }
+   
+}
+

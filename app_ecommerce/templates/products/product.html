@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block title %}{{product.name_product}}{% endblock  %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/products/product.css" %}">
+{# PRODUCT CONTAINER#}
+<div class="product__container">
+
+    {# PRODUCT CONTAINER HEADER #}
+    <section class="product__container__header ">
+       
+        <div class="product__container__header__image image__container" id="container_prueba">
+            
+            <img class="image__container--img" src="{{product.img_product.url}}" alt="">
+        </div>
+        <form
+            hx-post ={% url "add___item__cart" product.id %}
+            hx-target="#buycart"
+            hx-swap="innerHTML"
+            class="product__container__header__description description__container">
+            {% csrf_token %}
+            <div class="description__container__title__container">
+            <h3 class="description__container--title">{{product.name_product}}</h3>
+            <h4 class="description__container--price">${{product.price_product}}</h4>
+            <div class="description__container__valoration valoration__container">
+                {% for i in "12345"  %}
+                    {% if forloop.counter <= product.valoration_product %}
+                        <i class="fa-solid fa-star"></i>
+                    {% else %}
+                        <i class="fa-regular fa-star"></i>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <label class="description__container--valoration-label" for="">{{valoration__total__count}} usuario(s) calificaron este producto</label>
+            </div>
+            <div class="description__container__labels">
+                <label for="" class="description__container--label category__label">{{product.category_product.name_category}}</label>
+                <label for="" class="description__container--label brand__label">{{product.brand_product.name_brand}}</label>
+            </div>
+            <div class="description__container__quantity">
+                <h5 class="description__container--quantity">Cantidad:</h5>
+                <p id="quantity__button__decrement" class="description__container__qauntity--button">-</p>
+                <label for=""  id="quantity__label" class="description__container--quantity-label">1 </label>
+                <p id="quantity__button__increment" class="description__container__qauntity--button"><i class="fa-solid fa-plus"></i></p>
+                <input type="number" id="quantity__input" value="1"  name="quantity__product" hidden>
+                
+            </div>
+                {% if request.user.is_authenticated %}
+                    <button type="submit" class="description__container--button button" style="cursor:pointer; display:flex; align-items:center; gap:1rem;">Agregar al carrito <i class="bi bi-bag-plus-fill" style="font-size:1.3rem;"></i></button>
+                {% else %}
+                    <a href="{% url "login" %}" class="product__subcontainer__footer--button button">Debes iniciar sesión para ejecutar la compra</a>
+                {% endif %}
+        </form>
+    </section>
+    {# PRODUCT CONTAINER BODY #}
+    {% if related_products %}
+    <section class="product__container__body related__container">
+        <div class="related__container__header">
+            <h4 class="related__container__header--title">Productos Relacionados</h4>
+        </div>
+        <div class="related__container__body">
+            {% for related_product in related_products %}
+            <div class="product__subcontainer">
+                <div class="product__subcontainer__header">
+                    <img src="{{related_product.img_product.url}}" alt="">
+                </div>
+                <div class="product__subcontainer__body">
+                    <h4 class="product__subcontainer__body--title">{{related_product.name_product}}</h4>
+                    <h5 class="product__subcontainer__body--price">${{related_product.price_product}}</h5>
+                    <label class="product__subcontainer__body--label" for="">Etiquetas</label>
+                    <div class="product__subcontainer__body__labels">
+                        <label for="" class="product__subcontainer__labels--label category__label">{{related_product.category_product}}</label>
+                        <label for="" class="product__subcontainer__labels--label brand__label">{{related_product.brand_product}}</label>
+                    </div> 
+                </div>
+                <div  class="product__subcontainer__footer">
+                   
+                    <button class="product__subcontainer__footer--button button">Agregar al carrito</button>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+    {# PRODUCT CONTAINER FOOTER #}
+    
+    <section class="product__container__footer comments__container">
+        {% if comments %} 
+        <div class="comments__container__header">
+            <h3 class="comments__container__header--title">Comentarios</h3>
+        </div>  
+         
+        <div class="comments__container__body">
+            
+                {% for comment__user in comments  %}
+                <div class="comments__container__body__comment comment__container">
+                    <div class="comment__container__header">
+                        <div class="comment__container__img">
+                            <img src="{{comment__user.username.perfil.image.url}}" alt="" class="comment__container__header--img">
+                        </div>
+                        <div class="comment__container__header__subcontainer">
+                            <h5 class="comment__container__header--username">{{comment__user.username.username}} </h5>
+                            <div class="comment__container__header__subcontainer--valorations">
+                                {% for valoration in valoration__model  %}
+                                    {% if valoration.user == comment__user.username %}
+                                            {% for i in "12345"  %}
+                                                {% if forloop.counter <= valoration.rating %}
+                                                    <i class="fa-solid fa-star" style="color:yellow; display:flex; align-items:center; margin-bottom:0.5rem;"></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment__container__body">
+                        <p class="comment__container__body--comment">{{comment__user.comment}}</p>
+                    </div>
+                    <div class="comment__container__footer">
+                        <b class="comment__container__footer--datetime">{{comment__user.datetime}}</b>
+                    </div>
+                </div>
+                {% endfor %}
+            
+        </div>
+        {% endif %}
+        <form method="POST" action="" class="comments__container__footer form__comment__container">
+            {% csrf_token %}
+            <input type="text" name="type__action" value="create__comment" hidden>
+            <div class="form__comment__container__header">
+                <h3 class="form__comment__container__header--title">Enviar comentario</h3>
+            </div>
+
+            <div class="form__comment__container__body" >
+                {% if request.user.is_authenticated %}
+                {% if  valoration__buttons %}
+                <h5 class="form__comment__container__body--title">Calificar y comentar</h5>
+                <div class="valoration__container">
+                    <input class="valoration__container--input" type="radio" id="star5" name="rating" value="5" /><label class="valoration__container--label" for="star5" title="5 estrellas"><i class="fa-solid fa-star"></i></label>
+                    <input class="valoration__container--input" type="radio" id="star4" name="rating" value="4" /><label class="valoration__container--label" for="star4" title="4 estrellas"><i class="fa-solid fa-star"></i></label>
+                    <input class="valoration__container--input" type="radio" id="star3" name="rating" value="3" /><label class="valoration__container--label" for="star3" title="3 estrellas"><i class="fa-solid fa-star"></i></label>
+                    <input class="valoration__container--input" type="radio" id="star2" name="rating" value="2" /><label class="valoration__container--label" for="star2" title="2 estrellas"><i class="fa-solid fa-star"></i></label>
+                    <input class="valoration__container--input" type="radio" id="star1" name="rating" value="1" /><label class="valoration__container--label" for="star1" title="1 estrella"><i class="fa-solid fa-star"></i></label>
+                </div>
+                {% else %}
+                <h5 class="form__comment__container__body--title">Comentar</h5>
+                {% endif %}
+                <div class="comment__container__text">
+                    <img src="{{request.user.perfil.image.url}}" alt="">
+                    <label style="font-size:1rem; font-weight:500; color:white;" for="">{{request.user.username}}</label>
+                </div>
+                {{comment__form.comment}}
+                <label id="msj__error" class="form__comment__container__body--errormsj" for="">
+                {% if comment__form.comment.errors %}
+                    <a href="#msj__error" id="msj__error__link" hidden></a>
+                    {{comment__form.comment.errors}}
+                {% endif %}
+                </label>
+                <button type="submit" class="form__comment__container__footer--button ">Enviar comentario</button>
+                {% else %}
+                <a href="{% url "login" %}" class="form__comment__container__footer--button bg-danger " style="background:none; box-shadow:none; text-decoration:none ">Debes iniciar sesión para comentar y calificar este producto</a>
+                {% endif %}
+            </div>
+            
+        </form>
+    </section>
+
+</div>
+<script  type="module" src="{% static "js/products/product.js" %}"></script>
+
+{% endblock content %}

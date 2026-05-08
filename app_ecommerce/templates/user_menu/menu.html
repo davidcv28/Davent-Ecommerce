@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Menu de usuario{% endblock  %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/user_menu/menu.css" %}">
+{#USER HEADER CONTAINER#}
+<div class="header__user__main-menu">
+    <a href="{% url "home" %}" class="header__user__main-menu--logo">Davent <i class="fa-solid fa-candy-cane"></i></a>
+        <button class="menu-movil--button" id="button__user__main__menu"><i class="fa-solid fa-bars"></i></button>
+</div>
+{#SLIDER MENU CONTAINER#}
+<div class="slider__user__main-menu" id="user__main__menu">
+    <div class="slider__user__main-menu--menu user__main__menu">
+        <div class="user__menu__item menu__item {% if select_option == 'main__info' %}menu__item--active{% endif %}">
+            <a href="{% url 'user menu' %}?select_option=main__info" style="align-items:center;"  class="menu__item--title">Informacion general <i class="bi bi-house-door-fill menu__item--icon" syle="margin-bottom:0.5rem"></i></a>
+            
+        </div>
+        <div class="user__menu__item menu__item {% if select_option == 'pucharses__user' %}menu__item--active{% endif %}">
+            <a href="{% url 'user menu' %}?select_option=pucharses__user" style="align-items:center;"   class="menu__item--title">Compras realizadas <i class="bi bi-bag-check-fill menu__item--icon" ></i></a>
+            
+        </div>
+        <div class="user__menu__item menu__item exit__button">
+            <a href="{% url "logout" %}" class="menu__item--title" style="" >Cerrar sesión <i class="fa-solid fa-right-from-bracket menu__item--icon"></i></a>
+            
+        </div>
+    </div>
+</div>
+{#////////////////////////////////////////////#}
+{#////////////USER MAIN_CONTAINER/////////////#}
+{#////////////////////////////////////////////#}
+<div class="user__main__container">
+
+    {#/////////USER INFO__CONTAINER (DEFAULT)//////////#}
+    {% if select_option == 'main__info' %}
+        {% include "user_menu/user_update.html" %}
+    {% endif %}
+    {% if select_option == 'pucharses__user' %}
+        {% include "user_menu/user_pucharses.html" %}
+    {% endif %}
+   
+
+  
+</div>
+<script src="{% static "js/user_menu/menu.js" %}"></script>
+{% endblock  %}

@@ -1,0 +1,75 @@
+ {% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static "css/user_menu/user_info.css" %}">
+ <div class="user__info__container">
+        <div class="user__info__container__header">
+            <h2 class="user__info__container__header--title">
+                Información General 
+            </h2>
+        </div>
+        <div class="user__info__container__body">
+            <div class="user__info__container__body__subcontainer sub__container sub__container__pucharse">
+                <div class="sub__container__header">
+                    <h5 class="sub__container__header--title">
+                         Compras realizadas 
+                    </h5>
+                </div>
+                <div class="sub__container__body">
+                    <h2 class="sub__container__body--quantity">   {{ request.user.pucharse_order_set.count }}</h2>
+                    <i class="fa-solid fa-bag-shopping sub__container__body--icon icon--quantity"></i>
+                </div>
+                
+            </div>
+            <div class="user__info__container__body__subcontainer sub__container sub__container__balance">
+                <div class="sub__container__header">
+                    <h5 class="sub__container__header--title">
+                       Saldo Disponible 
+                    </h5>
+                </div>
+                <div class="sub__container__body">
+                    <h2 class="sub__container__body--title sub__container__body--balance">${{request.user.perfil.balance}}</h2>
+                    <i class="fa-solid fa-dollar-sign sub__container__body--icon icon--balance"></i>
+                </div>
+                
+            </div>
+            <div class="user__info__container__body__subcontainer sub__container sub__container__product-valoration ">
+                <div class="sub__container__header">
+                    <h5 class="sub__container__header--title">
+                        Productos Valorados
+                    </h5>
+                </div>
+                <div class="sub__container__body">
+                    <h2 class="sub__container__body--title">{{user__details__valorations}}</h2>
+                    <i class="fa-solid fa-star sub__container__body--icon  icon--valoration"></i>
+                </div>
+                
+            </div>
+        </div>
+        <div class="user__info__container__footer user__detail__container">
+            <div class="user__detail__container__header">
+                <h3 class="user__detail__container__header--title">Información de usuario</h3>
+                <i class="bi bi-person-vcard-fill user__detail__container__header--icon"></i>
+            </div>
+            <div class="user__detail__container__body">
+                <div class="user__detail__container__body__detail detail__container">
+                    <h5 class="detail__container--title">Nombre:</h5>
+                    <p class="detail__container--value">{{request.user.first_name}}</p>
+                </div>
+                <div class="user__detail__container__body__detail detail__container">
+                    <h5 class="detail__container--title">Apellido:</h5>
+                    <p class="detail__container--value">{{request.user.last_name}}</p>
+                </div>
+                <div class="user__detail__container__body__detail detail__container">
+                    <h5 class="detail__container--title">Correo:</h5>
+                    <p class="detail__container--value">{{request.user.email}}</p>
+                </div>
+                <div class="user__detail__container__body__detail detail__container">
+                    <h5 class="detail__container--title">Estado de cuenta:</h5>
+                    <p class="detail__container--value {% if request.user.is_active %}active__account{% else %}inactive__account{% endif %}">{% if request.user.is_active %}Activada {% else %} Inactiva {% endif %}</p>
+                </div>
+                <div class="user__detail__container__body__detail detail__container">
+                    <h5 class="detail__container--title">Fecha de creación:</h5>
+                    <p class="detail__container--value">{{request.user.date_joined}}</p>
+                </div>
+            </div>
+        </div>
+    </div>

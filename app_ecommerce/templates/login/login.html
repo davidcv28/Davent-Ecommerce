@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Inicio de Sesión{% endblock  %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/login/login.css" %}">
+{# LOGIN CONTAINER #} 
+<form method="POST" class="login__container" id="login__form">
+    {% csrf_token %}
+    {# LOGIN CONTAINER HEADER #} 
+    <section class="login__container__header">
+        <h2 class="login__container__header--title">
+            Inicio de Sesión
+        </h2>
+    </section>
+    {# LOGIN CONTAINER BODY #} 
+    <section class="login__container__body">
+        <div class="login__container__body__inputcontainer input__container">
+            <i class="fa-solid fa-user input__container--icon"></i>
+            {# LOGIN CONTAINER USERNAME INPUT #} 
+            {{login__form.username}}
+            
+        </div>
+        <div class="login__container__body__inputcontainer input__container">
+            <i class="fa-solid fa-lock input__container--icon" ></i>
+            {# LOGIN CONTAINER PASSWORD INPUT #} 
+            {{login__form.password}}
+           
+        </div>
+        <div class="login__container__body__links links__container">
+            <a href="{% url "register" %}" class="links__container--link">
+                Registrarse
+            </a>
+            <a href="#" class="links__container--link">
+                Olvido su contraseña?
+            </a>
+        </div>
+    </section>
+    {# LOGIN CONTAINER FOOTER #} 
+    <section class="login__container__footer">
+        <div class="error__container" id="error__container">
+            {% if messages %}
+            {% for message in messages  %}
+            <h4 class="error__container--message">{{message}}</h4>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <button type="submit" class="login__container__footer--button button">Iniciar Sesión</button>
+    </section>
+</form>
+<script src="{% static "js/login.js" %}"></script>
+{% endblock  %}
+
+

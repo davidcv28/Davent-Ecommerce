@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block title %}Productos{% endblock  %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/products/products.css" %}">
+{#MAIN PRODUCTS CONTAINER#}
+<div class="main__products__container">
+    {#SLIDER CONTAINER#}
+    <span class="material-symbols-outlined slider__button__icon" id="slider__button__icon">
+instant_mix
+</span>
+    <section class="slider__container" id="slider__container">
+        {#SLIDER CONTAINER HEADER#}
+        <div class="slider__container__header">
+            {#SEARCH INPUT FILTER CONTAINER#}
+            <form method ="GET" class="filter__search__container">
+                <i class="fa-solid fa-magnifying-glass filter__search__container--icon"></i>
+                <input type="text" placeholder="Buscar Producto" name="input_search" class="textbox filter__search__container--input">
+                <button type="submit" style="display:none"></button>
+            </form>
+        </div>
+        {#SLIDER CONTAINER BODY#}
+        <h3 class="slider__container__body--title">Filtros <i class="fa-solid fa-filter "></i></h3>
+        <ul class="slider__container__body">
+            
+            {#SLIDEr CONTAINER FILTER#}
+            <li class="slider__container__body__filter filter__container">
+
+                <h5 class="filter__container--title">Categoria <i class="bi bi-caret-right-fill filter__container__title--icon"></i></h5>
+                <ul class="filter__container__filter filter">
+                    {% for category in categorys %}
+                    <li class="filter__item">
+                        <p class="filter__item--link category__label">{{category.name_category}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </li>
+            {#SLIDEr CONTAINER FILTER#}
+            <li class="slider__container__body__filter filter__container">
+
+                <h5 class="filter__container--title">Marca <i class="bi bi-caret-right-fill filter__container__title--icon"></i></h5>
+                <ul class="filter__container__filter filter">
+                    {% for brand in brands %}
+                    <li class="filter__item">
+                        <p class="filter__item--link brand__label">{{brand.name_brand}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </li>
+            <li class="slider__container__body__filter filter__container">
+
+                <h5 class="filter__container--title">Precio <i class="bi bi-caret-right-fill filter__container__title--icon"></i></h5>
+                <ul class="filter__container__filter filter">
+                    <li class="filter__item">
+                        <p class="filter__item--link price__label">Mayor precio</p>
+                    </li>
+                    <li class="filter__item">
+                        <p class="filter__item--link price__label">Menor Precio</p>
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
+        {#SLIDER CONTAINER FOOTER#}
+        <div class="slider__container__footer">
+            {#LABELS CONTAINER #}
+            <form method="GET" class="labels__container">
+                {#LABELS CONTAINER HEADER#}
+                <div class="labels__container__header">
+                    <h3>Etiquetas <i class="fa-solid fa-tag"></i></h3>
+                </div>
+                {#LABELS CONTAINER BODY#}
+                <div class="labels__container__body" id="labels__container"> 
+                    
+                </div>
+                {#LABELS CONTAINER FOOTER#}
+                <div class="labels__container__footer">
+                    <button type="submit" class="labels__container__footer--button button">Filtrar productos</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    {#PRODUCTS CONTAINER#}
+    <section class="products__container">
+        {# PRODUCT ITEM CONTAINER#}
+        {% for product in products  %}
+        <div class="products__container__product product__item__container">
+            <div class="product__item__container__header">
+                <img src="{{product.img_product.url}}" alt="{{pruduct.img_product.url}}" class="bi bi-bag-fill product__item__container__header--img"></img>
+            </div>
+            <div class="product__item__container__body">
+                <h5 class="product__item__container__body--title">{{product.name_product}}</h5>
+                
+                <div class="product__item__container__body_valoration valoration__container">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.valoration_product %}
+                            <i class="fa-solid fa-star"></i>
+                        {% else %}
+                            <i class="fa-regular fa-star"></i>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+                
+                <div class="product__item__container__body__info info__container">
+                    <div class="info__container__labels">
+                        <a class="info__container--label">{{product.category_product.name_category}}</a>
+                        <a class="info__container--label">{{product.brand_product.name_brand}}</a>
+                    </div>
+                    <h5 class="info__container--price">${{product.price_product}}</h5>
+                </div>
+            </div>
+            <div class="product__item__container__footer">
+                <a href="{% url "product"  product.id  %}" class="product__item__container__footer--button button">Comprar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</div>
+<script src="{% static "js/products/products.js" %}"></script>
+{% endblock  %}

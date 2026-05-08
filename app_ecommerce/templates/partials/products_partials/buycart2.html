@@ -1,0 +1,43 @@
+                      <div class="buycart__container__body" id="buycart__items" >
+                            {% for item in Cart.cart.values %}
+                            <div class="item__cart__container">
+                                <img class="item__cart__container--img" src="{{item.product_image}}" alt="">
+                                <div class="item__cart__container__detail detail__container">
+                                    <form 
+                                    hx-post="{% url "delete__item__cart" item.product_id %}"
+                                    hx-target="#buycart"
+                                    hx-swap="innerHTML"
+                                    >
+                                    {% csrf_token %}
+                                        <button type="submit" style="border:none; background:none;" class=" detail__container--close fa-solid fa-xmark"></button>
+                                    </form>
+                                    
+                                    <h5 class="detail__container--title">{{item.product_name}}</h5>
+                                    <h5 class="detail__container--price">${{item.product_price}}</h5>
+                                    <div class="detail__container__buttons">
+                                        <label for="" class="detail__container--quantity">Cantidad:{{item.product_quantity}} </label>
+                                        <form hx-post ="{% url "decrement__item__cart" %}" hx-target="#buycart__container" hx-swap="innerHTML" >
+                                            {% csrf_token %}
+                                            <input type="text" value="{{item.product_id}}" name="id_product" hidden>
+                                            <button type="submit" class="detail__container__buttons--button" style="font-weight: 700;">-</i></button>
+                                        </form>
+                                        <form hx-post="{% url "increment__item__cart" %}" hx-target="#buycart__container" hx-swap="innerHTML" >
+                                            {% csrf_token %}
+                                            <input type="text" value="{{item.product_id}}" name="id_product" hidden>
+                                            <button class="detail__container__buttons--button"><i class="fa-solid fa-plus"></i></button>
+                                        </form>
+                                    </div>
+                                    <label for="" class="detail__container--total">
+                                        Total a pagar: ${{item.product_total_price}}
+                                    </label>    
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                        <div class="buycart__container__footer" >
+                                <h4 class="buycart__container__footer--total_price">Total a Pagar: ${{total__price}}</h4>
+                                <a href="{% url "buycart" %}" class="buycart__container__footer--button button">Confirmar compra</a>
+                        </div> 
+                    
+                

@@ -1,0 +1,40 @@
+  {#BUYCARTVIEW HEADER#}
+    <div class="buycartview__container__header">
+        <h2>Carrito de compras</h2>
+    </div>
+    {#BUYCARTVIEW BODY#}
+    <div class="buycarview__container__body" id="buycart__body">
+        
+        {% for product in Cart.cart.values  %}
+        <div  class="buycart__container__pc">
+            <h5 class="buycart__container__pc--product__name buycart__container__pc--item">{{product.product_name}}</h5>
+            <img src="{{product.product_image}}" alt="" class="buycart__container__pc--img buycart__container__pc--item">
+            <div class="quantity__buttons buycart__container__pc--item">
+                
+                <form id="item-{{product.product_id}}" hx-post= "{% url "decrement__item__viewcart" %}" hx-target="#buycartview__container" hx-swap="innerHTML">
+                    {% csrf_token %}
+                    <input type="text" value="{{product.product_id}}" name="id_product" hidden>
+                    <button class="quantity__buttons--button button"><i class="bi bi-dash-circle"></i></button>
+                </form>
+                <p class="buycart__container__pc--stock ">{{product.product_quantity}}</p>
+                <form id="item-{{product.product_id}}"  hx-post= "{% url "increment__item__viewcart" %}" hx-target="#buycartview__container" hx-swap="innerHTML">
+                    {% csrf_token %}
+                    <input type="text" value="{{product.product_id}}" name="id_product" hidden>
+                    <button type="submit" class="quantity__buttons--button button"><i class="bi bi-plus-circle"></i></button>
+                </form>
+            </div>
+            <p class="buycart__container__pc--price buycart__container__pc--item">${{product.product_price}}</p>
+            <h4 class="buycart__container__pc--total__price buycart__container__pc--item">${{product.product_total_price}}</h4>
+        </div>
+        {% endfor %}
+    </div>
+    {#BUYCARTVIEW FOOTER#}
+    <form hx-boost="false" method="POST"  class="buycartview__container__footer">
+       <label>Subtotal: ${{total__price}}</label>
+        <label>IVA 21%: ${{iva__price}}</label>
+        <div class="buycartview__container__footer__total">          
+            <h4>TOTAL:</h4> <h3>${{total__iva}}</h3>
+        </div>
+        {% csrf_token %} 
+         <button  type="submit" name="type__action"  value ="pucharse__action" class="buycartview__container__footer--button button">Confirmar Compra</button>
+    </form>

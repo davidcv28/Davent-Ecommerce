@@ -1,0 +1,30 @@
+<div class="user__update__container__body__form__perfil perfil__form" id="perfil__form">
+             <div class="perfil__form__img__container">
+                <form  enctype="multipart/form-data" hx-post="{% url "update_perfil" %}" hx-target="#perfil__form" hx-swap="innerHTML" class="img__container" id="image__container__perfil">
+                    {% csrf_token %}
+                    <img class="perfil__form__img__container--img" src="{{request.user.perfil.image.url}}" alt="">
+                    <i class="bi bi-pencil-square perfil__form__img__container--edit__button" id="fileinput__button__open"></i>
+                    {{user__perfilupdate.image}}
+                    <button type="submit" id="change__image__button" hidden>Guardar cambios</button>
+                    {% if user__perfilupdate.image.errors %}<label style="color:red;" for="">{{user__perfilupdate.image.errors}}</label>{% endif %}
+                </form>
+                <div class="user__details">
+                    <h2>{{request.user.username}} </h2>
+                    <label {% if request.user.is_active  %} style="color:#0bef96;"{% endif %}>Estado de cuenta: {% if request.user.is_active  %}Activa {% else %} Inactiva{% endif %}</label>
+                    <label>Compras realizadas: {{request.user.pucharse_order_set.count}}</label>
+                    <label>Productos Valorados: {{request.user.valoration_set.count}}</label>
+                    <label>Usuario desde: {{request.user.date_joined}}</label>
+                </div>
+           
+                
+            </div>
+            <div class="perfil__form__balanace__container">
+                <h3>Saldo Disponible <i class="bi bi-credit-card"></i></h3>
+                <h2>${{request.user.perfil.balance}}</h2>
+                <label>Este saldo solo es valido para realizar compras ficticias dentro de la plataforma</label>
+            </div>
+           
+        </div>
+        <!--
+
+  
