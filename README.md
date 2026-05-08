@@ -50,8 +50,8 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local:
 
 1.  **Clonar el Repositorio:**
     ```bash
-    git clone https://github.com/DavidCv2894/simulador-ecommerce-django.git
-    cd simulador-ecommerce-django
+    git clone https://github.com/davidcv28/Davent-Ecommerce.git
+    cd Davent-Ecommerce
     ```
 
 2.  **Crear y Activar el Entorno Virtual:**
@@ -111,4 +111,4 @@ Si tienes preguntas o comentarios, puedes contactarme en:
 
 *   **Email:** davidcv28@outlook.com
 *   **LinkedIn:** David Cervantes
-*   **GitHub:** DavidCv28
+*   **GitHub:** davidcv28

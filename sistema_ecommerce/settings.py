@@ -1,4 +1,6 @@
 import os
+from pathlib import Path
+import dj_database_url
 """
 Django settings for sistema_ecommerce project.
 
@@ -11,8 +13,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,46 +21,79 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o4+1ap+9(xe2mbh3nkwb1_uu#^_dcup3ij$e#)i#&5xw*%a$bj'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-o4+1ap+9(xe2mbh3nkwb1_uu#^_dcup3ij$e#)i#&5xw*%a$bj')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['47963d136f9b.ngrok-free.app', 'localhost:8800', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS =['https://47963d136f9b.ngrok-free.app']
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+
+ALLOWED_HOSTS = ['47963d136f9b.ngrok-free.app', 'localhost', '127.0.0.1']
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+CSRF_TRUSTED_ORIGINS = ['https://47963d136f9b.ngrok-free.app']
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_EXTERNAL_HOSTNAME}')
+
+
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000  # 1 año
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
 
 #DJANGO REST FRAMEWORK
-REST_FRAMEWORK ={
-    'DEFAULT_FILTER_BACKENDS':[
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
     ]
+}
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage" if DEBUG else "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
 }
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_browser_reload',
     "rest_framework",
     "rest_framework.authtoken",
     'app_ecommerce',
     'django_filters'
 ]
 
+if DEBUG:
+    INSTALLED_APPS.append('django_browser_reload')
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_browser_reload.middleware.BrowserReloadMiddleware'
 ]
+
+if DEBUG:
+    MIDDLEWARE.append('django_browser_reload.middleware.BrowserReloadMiddleware')
 
 ROOT_URLCONF = 'sistema_ecommerce.urls'
 
@@ -87,16 +120,11 @@ WSGI_APPLICATION = 'sistema_ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'ecommerce_final2',
-        'USER': 'postgres',
-        'PASSWORD':'lerma275',
-        'HOST':'localhost',
-        'PORT':'5432'
+DATABASES = {'default': dj_database_url.config(
+        conn_max_age=600,
+        conn_health_checks=True,
+        )
     }
-}
 
 
 # Password validation
@@ -117,7 +145,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 2621440
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # Ajustado a 5MB para coincidir con las validaciones de tus serializadores
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -134,10 +163,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 MEDIA_URL = '/media/'  
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
