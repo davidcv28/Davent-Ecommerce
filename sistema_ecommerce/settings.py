@@ -59,7 +59,7 @@ REST_FRAMEWORK = {
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage" if DEBUG else "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -71,6 +71,7 @@ cloudinary.config(
   api_key = "876942492563186",
   api_secret = "Qmo3lHT7cG02t7MK_LaojEreukY"
 )
+
 # Application definition
 
 INSTALLED_APPS = [

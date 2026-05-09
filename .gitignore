@@ -16,7 +16,7 @@ ENV/
 db.sqlite3-journal
 
 # Archivos de medios y estáticos generados
-media/
+
 staticfiles/
 
 # IDEs (VSCode, PyCharm)
