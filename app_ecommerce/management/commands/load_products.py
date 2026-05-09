@@ -63,7 +63,7 @@ class Command(BaseCommand):
                                 'stock':300,
                                 'price_product':5500,
                                 'category_product':map_category['CHOCOLATE'],
-                                'brand_product' : map_brand['CHOCOLINO'],
+                                'brand_product' : map_brand['CHOCOLITO'],
                                 'img_product' : os.path.join(media_img, 'chocolate_chocolino.png')
                             }
                         }
