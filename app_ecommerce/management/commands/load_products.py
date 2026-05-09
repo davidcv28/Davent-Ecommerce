@@ -82,4 +82,4 @@ class Command(BaseCommand):
                     if created:
                         self.stdout.write(self.style.SUCCESS(f"SE CARGO EL PRODUCTO {product['name_product']}"))
             except:
-                return
+                continue
