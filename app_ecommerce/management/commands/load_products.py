@@ -64,7 +64,7 @@ class Command(BaseCommand):
                                 'price_product':5500,
                                 'category_product':map_category['CHOCOLATE'],
                                 'brand_product' : map_brand['CHOCOLITO'],
-                                'img_product' : os.path.join(media_img, 'chocolate_chocolino.png')
+                                'img_product' : os.path.join(media_img, 'chocolate_chocolito.png')
                             }
                         }
         list_add_product = []
